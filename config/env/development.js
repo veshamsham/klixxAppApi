@@ -15,3 +15,4 @@ export default {
   skip: 0,
   tripFilter: "All"
 };
+

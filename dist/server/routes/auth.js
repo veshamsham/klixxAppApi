@@ -29,6 +29,7 @@ var router = _express["default"].Router();
 
 router.route('/login').post((0, _expressValidation["default"])(_paramValidation["default"].login), _auth["default"].login);
 router.route('/loginadmin').post((0, _expressValidation["default"])(_paramValidation["default"].loginadmin), _auth["default"].loginadmin);
+router.route('/test-server').get(_auth["default"].testServer);
 router.route('/checkuser').post(_auth["default"].checkUser);
 /**
  * Middleware for protected routes. All protected routes need token in the header in the form Authorization: JWT token

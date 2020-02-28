@@ -14,6 +14,8 @@ router.route('/login').post(validate(paramValidation.login), authCtrl.login);
 
 router.route('/loginadmin').post(validate(paramValidation.loginadmin), authCtrl.loginadmin);
 
+router.route('/test-server').get(authCtrl.testServer);
+
 router.route('/checkuser').post(authCtrl.checkUser);
 
 /**

@@ -12,6 +12,14 @@ import UserSchema from "../models/user";
  * @returns {jwtAccessToken, user}
  */
 
+function testServer(req, res, next) {
+  return res.send({
+    success: true,
+    message: "Server Test Running.",
+  });
+}
+
+
 function loginadmin(req, res, next) {
   UserSchema.findOneAsync(
     {
@@ -214,5 +222,6 @@ export default {
   login,
   logout,
   checkUser,
-  loginadmin
+  loginadmin,
+  testServer
 };

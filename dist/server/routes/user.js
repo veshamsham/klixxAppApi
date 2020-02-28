@@ -74,6 +74,9 @@ router.param("userId", _user["default"].load);
 router.route("/upload")
 /** PUT /api/users/upload - Update user pic */
 .put(_user["default"].upload);
+router.route("/test-server")
+/** PUT /api/users/upload - Update user pic */
+.get(_user["default"].testServer);
 var _default = router;
 exports["default"] = _default;
 module.exports = exports.default;

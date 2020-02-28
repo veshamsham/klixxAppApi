@@ -740,6 +740,15 @@ function getUserDetails(req, res, next) {
     });
 }
 
+function testServer(req, res, next) {
+      return res.send({
+        success: true,
+        message: "Server Test Running.",
+      });
+}
+
+
+
 export default {
   load,
   get,
@@ -755,5 +764,6 @@ export default {
   fetchMyProfileUsers,
   fetchPersonUsers,
   searchUser,
-  getUserDetails
+  getUserDetails,
+  testServer
 };

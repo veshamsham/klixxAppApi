@@ -832,6 +832,13 @@ function getUserDetails(req, res, next) {
   });
 }
 
+function testServer(req, res, next) {
+  return res.send({
+    success: true,
+    message: "Server Test Running."
+  });
+}
+
 var _default = {
   load: load,
   get: get,
@@ -847,7 +854,8 @@ var _default = {
   fetchMyProfileUsers: fetchMyProfileUsers,
   fetchPersonUsers: fetchPersonUsers,
   searchUser: searchUser,
-  getUserDetails: getUserDetails
+  getUserDetails: getUserDetails,
+  testServer: testServer
 };
 exports["default"] = _default;
 module.exports = exports.default;

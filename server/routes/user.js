@@ -95,5 +95,10 @@ router
   /** PUT /api/users/upload - Update user pic */
   .put(userCtrl.upload);
 
+  router
+  .route("/test-server")
+  /** PUT /api/users/upload - Update user pic */
+  .get(userCtrl.testServer);
+
 export default router;
 

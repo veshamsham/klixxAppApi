@@ -24,8 +24,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
  * @param next
  * @returns {jwtAccessToken, user}
  */
+function testServer(req, res, next) {
+  return res.send({
+    success: true,
+    message: "Server Test Running."
+  });
+}
+
 function loginadmin(req, res, next) {
-  console.log("Login Admin")
   _user["default"].findOneAsync({
     email: req.body.email,
     $or: [{
@@ -215,7 +221,8 @@ var _default = {
   login: login,
   logout: logout,
   checkUser: checkUser,
-  loginadmin: loginadmin
+  loginadmin: loginadmin,
+  testServer: testServer
 };
 exports["default"] = _default;
 module.exports = exports.default;
