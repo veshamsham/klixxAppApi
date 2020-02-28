@@ -17,9 +17,11 @@ if (nodeEnv === "production") {
 }
 // URL to connect to a local MongoDB with database test.
 // Change this to fit your running MongoDB instance
- const databaseURL = `mongodb://localhost:27017/${databaseName}`;
+//  const databaseURL = `mongodb://localhost:27017/${databaseName}`;
+const databaseURL = `mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/test?retryWrites=true&w=majority/${databaseName}`;
  console.log("AppConfig0---"+databaseURL)
 //const databaseURL = `mongodb+srv://nitprise:Rishabh2019@cluster0-sclfx.mongodb.net/test?retryWrites=true&w=majority`;
+// mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/test?retryWrites=true&w=majority
 printMessage(
   [
     "Please have patience while TaxiApp get Installed .This will take around 10 - 15 minutes."
