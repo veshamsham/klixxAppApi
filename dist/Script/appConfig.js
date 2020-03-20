@@ -24,7 +24,7 @@ if (nodeEnv === "production") {
 //  const databaseURL = `mongodb://localhost:27017/${databaseName}`;
 
 
-var databaseURL = "mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/test?retryWrites=true&w=majority/".concat(databaseName);
+var databaseURL = "mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/klixx?retryWrites=true&w=majority/".concat(databaseName);
 console.log("AppConfig0---" + databaseURL); //const databaseURL = `mongodb+srv://nitprise:Rishabh2019@cluster0-sclfx.mongodb.net/test?retryWrites=true&w=majority`;
 // mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/test?retryWrites=true&w=majority
 

@@ -100,7 +100,7 @@ var UserSchema = new _mongoose["default"].Schema({
   },
   userRating: {
     type: Number,
-    "default": 0
+    "default": 12
   },
   profileUrl: {
     type: String,
@@ -115,8 +115,7 @@ var UserSchema = new _mongoose["default"].Schema({
     "default": null
   },
   userType: {
-    type: String,
-    "default": "customer"
+    type: String
   },
   loginStatus: {
     type: Boolean,
@@ -240,6 +239,18 @@ var UserSchema = new _mongoose["default"].Schema({
   mapCoordinates: {
     type: [Number],
     index: "2d"
+  },
+  rating: {
+    type: Number,
+    "default": 4.5
+  },
+  price: {
+    type: Number,
+    "default": 20.05
+  },
+  bussinessType: {
+    type: String,
+    "default": "Wedding Organiser"
   },
   deviceId: {
     type: String,

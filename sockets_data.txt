@@ -1,0 +1,57 @@
+
+http://18.220.98.252:3010?token=JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWVyZ2VuY3lEZXRhaWxzIjp7InBob25lIjoiIiwibmFtZSI6bnVsbH0sImNhckRldGFpbHMiOnsidHlwZSI6IkdPIiwiY29tcGFueSI6Ik1hcnV0aSBTdXp1a2kiLCJyZWdObyI6Ik5ZQyAxMjMiLCJSQ19vd25lck5hbWUiOm51bGwsInZlaGljbGVObyI6bnVsbCwiY2FyTW9kZWwiOiJTd2lmdCBEemlyZSIsInJlZ0RhdGUiOiIyMDE2LTEyLTMxVDE4OjMwOjAwLjAwMFoifSwibGljZW5jZURldGFpbHMiOnsibGljZW5jZU5vIjpudWxsLCJpc3N1ZURhdGUiOm51bGwsImV4cERhdGUiOm51bGx9LCJiYW5rRGV0YWlscyI6eyJhY2NvdW50Tm8iOm51bGwsImhvbGRlck5hbWUiOm51bGwsIklGU0MiOm51bGx9LCJmbmFtZSI6InRlc3QiLCJsbmFtZSI6InVzZXIiLCJkb2IiOiIxOTk4LTEyLTA2VDE4OjMwOjAwLjAwMFoiLCJibG9vZEdyb3VwIjoiQSsiLCJhZGRyZXNzIjoiTmV3IEFzaG9rIG5hZ2FyIiwiY2l0eSI6Ik5vaWRhIiwic3RhdGUiOiJVdHRhciBQcmFkZXNoIiwiY291bnRyeSI6IkluZGlhIiwibGF0aXR1ZGVEZWx0YSI6MC4wMTMsImxvbmdpdHVkZURlbHRhIjowLjAyMiwidXNlclJhdGluZyI6MCwicHJvZmlsZVVybCI6Imh0dHA6Ly9yZXMuY2xvdWRpbmFyeS5jb20vdGF4aWFwcC9pbWFnZS91cGxvYWQvdjE1MDU4MDUxMDYvbm91bl8xNzIzN19hZ3dxZ3QucG5nIiwiY3VyclRyaXBJZCI6bnVsbCwiY3VyclRyaXBTdGF0ZSI6bnVsbCwibG9naW5TdGF0dXMiOnRydWUsIm1vYmlsZVZlcmlmaWVkIjpmYWxzZSwiZW1haWxWZXJpZmllZCI6ZmFsc2UsIm90cCI6NTM4NDE4LCJpc0FwcHJvdmVkIjp0cnVlLCJpc0F2YWlsYWJsZSI6dHJ1ZSwiaG9tZUFkZHJlc3MiOm51bGwsIndvcmtBZGRyZXNzIjpudWxsLCJ2ZXJpZmllZCI6dHJ1ZSwiand0QWNjZXNzVG9rZW4iOm51bGwsInVzZXJDYXJkSWQiOm51bGwsImluc3VyYW5jZVVybCI6bnVsbCwidmVjaGlsZVBhcGVyVXJsIjpudWxsLCJyY0Jvb2tVcmwiOm51bGwsImxpY2VuY2VVcmwiOm51bGwsImNhcmREZXRhaWxzIjpbXSwiZGV2aWNlSWQiOm51bGwsInB1c2hUb2tlbiI6bnVsbCwiZm9sbG93ZXJzIjpbXSwiZm9sbG93aW5ncyI6W10sIl9pZCI6IjVlNWY2NTE0YWEyNjU3MTA5YzIwZDljMSIsImVtYWlsIjoidGVzdDNAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkM29xVEsyeUFkSmQuU1Q3Q1QzWkswdXVPN2RyZ0Z0eG55cGw1YnVraFYwd0NBTFVhc2V0RDYiLCJ1c2VyVHlwZSI6IjEiLCJ1c2VyTmFtZSI6InRlc3QyIiwicGhvbmVObyI6IjEyMzQ1Njc4OTAiLCJncHNMb2MiOls3Ny40MDE0NTgxNywyOC41NDI3MTA4XSwibWFwQ29vcmRpbmF0ZXMiOls3NS41NTUsMjguMzg0XSwiX192IjowLCJpYXQiOjE1ODMzMTcxMzZ9.oeyNL3oBr1YyR62ANNX_H5TBH79V9y5W6Qwv40KAQsI
+
+1--listener -requestTrip
+          parameters=>{
+                    `         "rider": {
+                                        "_id":"5e5f6514aa2657109c20d9c1"
+                              },
+                              "tripRequest": {
+                                        "tripRequestStatus":"noNearByDriver"
+                              }
+                    }
+///////////////////////////////////----------------------
+2-- emitter : updateLocation
+listener: locationUpdated
+parameters=>{
+  "userType":"1",
+  "_id":"5e5f6514aa2657109c20d9c1",
+  "gpsLoc":[
+    "21.11",
+    "45.11"
+    ]
+}
+
+///////////////////////////////////////-----------------------------
+3--
+emitter : updatePickupRegion
+listener : nearByDriversList
+
+parameters :
+
+{
+"region" : {
+"longitude":"77.85368273308545",
+"latitude":"28.5427108"
+},
+"user" : {
+"_id":"5e5f6514aa2657109c20d9c1"
+}
+}
+
+///////////////////////////////////////////////--------------------------------
+
+4-emitter : updateAvailable
+listener : updateAvailable
+
+parameters :
+
+
+
+{
+  "userType":"2",
+  "_id":"5e5f655eaa2657109c20d9c2",
+  "isAvailable":true
+}
+
+////////////////////////////////////////////////-----------------------------

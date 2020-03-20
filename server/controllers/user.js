@@ -128,7 +128,14 @@ function create(req, res, next) {
           phoneNo: req.body.phoneNo,
           gpsLoc: [req.body.lat, req.body.lon],
           carDetails: req.body.userType === "driver" ? { type: "sedan" } : {},
-          mapCoordinates: [0, 0],
+          mapCoordinates: [req.body.lat, req.body.lon],
+          // dob:req.body.dob,
+          // bloodGroup:req.body.bloodGroup,
+          // address:req.body.address,
+          // city:req.body.city,
+          // state:req.body.state,
+          // country:req.body.country,
+          
           // isApproved:
           //   req.body.userType, 
           //   === "driver"
@@ -190,6 +197,7 @@ function create(req, res, next) {
  * @returns {User}
  */
 function update(req, res, next) {
+  console.log("found")
   const user = req.user;
   user.fname = req.body.fname ? req.body.fname : user.fname;
   user.lname = req.body.lname ? req.body.lname : user.lname;
@@ -252,6 +260,7 @@ function upload(req, res, next) {
       form.parse(req, (err, fields, files) => {
         console.log(files, "parse image");
         const imgpath = files.image;
+        console.log(files._writeStream);
         cloudinary.v2.uploader.upload(imgpath.path, (error, results) => {
           if (error) {
             console.log(error, "error upload");

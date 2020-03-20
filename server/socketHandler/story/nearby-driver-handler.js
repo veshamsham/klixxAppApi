@@ -16,6 +16,8 @@ function nearbyDriverHandler(socket) {
 		// for simulation only
 		// socket.broadcast.emit('riderMapCoordinates', coordinates);
 		// simulation ends
+		console.log(coordinates);
+		console.log(userId);
 		UserSchema.findOneAndUpdateAsync({ _id: userId }, { $set: { mapCoordinates: coordinates } }, { new: true })
 			.then(updatedUser =>
 				UserSchema.findAsync({
@@ -29,13 +31,14 @@ function nearbyDriverHandler(socket) {
 						},
 						{ currTripId: null, currTripState: null },
 						{ loginStatus: true },
-						{ userType: 'driver' },
+						{ userType: '2' },
 						{ isAvailable: true },
 					],
 				})
 			)
 			.then(driverArray => {
 				if (driverArray) {
+					
 					console.log(driverArray.length, 'driverArray');
 					SocketStore.emitByUserId(userId, 'nearByDriversList', driverArray);
 				}

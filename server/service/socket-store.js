@@ -92,20 +92,28 @@ class SocketStore {
    */
 
   static emitByUserId(userId, eventName, payload) {
+    console.log("now i reached to emituserid")
     if (userId === undefined || userId === null) {
+      // console.log("first if")
       return returnFunc(false, 'userId is undefined or null', '');
     } else if (store.length === 0) {
+      // console.log("second if")
       return returnFunc(false, 'socket store is empty', '');
     } else {
+      
+
       for (let i = 0; i < store.length; i++) {
+        console.log(store[i]);
         if (store[i].id.toString() === userId.toString()) {
           const socketArrayObject = store[i].socket;
           for (let j = 0; j < socketArrayObject.length; j++) {
             socketArrayObject[j].emit(eventName, payload);
           }
-          return returnFunc(true, 'evenet emitted successfully', '');
+          // console.log("first for")
+          return returnFunc(true, 'evenet emitted successfully', store);
         }
       }
+      // console.log("second for")
       return returnFunc(false, 'no user found with the id.', store);
     }
   }
@@ -149,6 +157,7 @@ class SocketStore {
  * Transform return Object
  */
 function returnFunc(successStatus, msg, resultData) {
+  // console.log("returnFunc")
   return { success: successStatus, message: msg, data: resultData };
 }
 

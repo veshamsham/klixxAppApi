@@ -42,7 +42,7 @@ const UserSchema = new mongoose.Schema({
   },
   latitudeDelta: { type: Number, default: 0.013 },
   longitudeDelta: { type: Number, default: 0.022 },
-  userRating: { type: Number, default: 0 },
+  userRating: { type: Number, default: 12 },
   profileUrl: {
     type: String,
     default:
@@ -50,7 +50,7 @@ const UserSchema = new mongoose.Schema({
   },
   currTripId: { type: String, default: null },
   currTripState: { type: String, default: null },
-  userType: { type: String, default: "customer" },
+  userType: { type: String },
   loginStatus: { type: Boolean, default: false },
   mobileVerified: { type: Boolean, default: false },
   emailVerified: { type: Boolean, default: false },
@@ -89,7 +89,12 @@ const UserSchema = new mongoose.Schema({
   mapCoordinates: {
     type: [Number],
     index: "2d"
+    
   },
+  rating:{type: Number, default: 4.5},
+  
+  price:{ type: Number, default: 20.05 },
+  bussinessType: { type: String, default: "Wedding Organiser" },
   deviceId: { type: String, default: null },
   pushToken: { type: String, default: null },
   followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],

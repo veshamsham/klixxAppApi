@@ -25,7 +25,7 @@ if (nodeEnv === "production") {
 //const databaseURL = `mongodb+srv://nitprise:Rishabh2019@cluster0-sclfx.mongodb.net/test?retryWrites=true&w=majority`;
 
 
-var databaseURL = "mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/test?retryWrites=true&w=majority/".concat(databaseName);
+var databaseURL = "mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/klixx?retryWrites=true&w=majority/".concat(databaseName);
 console.log("serverCon.js---" + databaseURL);
 printMessage(["Please have patience while TaxiApp get Installed .This will take around 10 - 15 minutes."], {
   color: "green",

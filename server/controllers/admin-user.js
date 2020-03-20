@@ -431,7 +431,7 @@ function createNewUser(req, res, next) {
         phoneNo: userData.phoneNo,
         userName: uuid(),
         bloodGroup: userData.bloodGroup ? userData.bloodGroup : null,
-        gpsLoc: [77.85368273308545, 12.02172902354515],
+        gpsLoc: [userData.lat, userData.lon],
         emergencyDetails:
           userData.userType === "rider"
             ? {

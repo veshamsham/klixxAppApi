@@ -24,22 +24,25 @@ function updateLocationHandler(socket) {
   socket.on("updateLocation", userObj => {
     const userType = userObj.userType;
     let searchObj = {};
-    if (userType === "rider") {
+    if (userType === "1") {
       searchObj = {
         riderId: userObj._id
       };
-    } else if (userType === "driver") {
+    } else if (userType === "2") {
       searchObj = {
         driverId: userObj._id
       };
     }
+    // console.log(userType);
     const userID = userObj._id;
+    console.log(userID)
     UserSchema.findOneAndUpdateAsync(
       { _id: userID },
       { $set: { gpsLoc: userObj.gpsLoc } },
       { new: true }
     )
       .then(updatedUser => {
+        // console.log(updatedUser+" this is done")
         SocketStore.emitByUserId(userID, "locationUpdated", updatedUser);
         TripRequestSchema.findOneAsync({
           $and: [
@@ -55,7 +58,9 @@ function updateLocationHandler(socket) {
         })
           .then(tripRequestObj => {
             if (tripRequestObj) {
-              if (userType === "driver") {
+              
+              if (userType === "1") {
+               
                 SocketStore.emitByUserId(
                   tripRequestObj.riderId,
                   "updateDriverLocation",
@@ -68,7 +73,7 @@ function updateLocationHandler(socket) {
                 );
                 const driverObj = updatedUser;
                 changedTripRequestStatus(driverObj, tripRequestObj);
-              } else if (userType === "rider") {
+              } else if (userType === "2") {
                 SocketStore.emitByUserId(
                   tripRequestObj.driverId,
                   "updateRiderLocation",
@@ -81,7 +86,7 @@ function updateLocationHandler(socket) {
               })
                 .then(tripObj => {
                   if (tripObj) {
-                    if (userType === "driver") {
+                    if (userType === "1") {
                       SocketStore.emitByUserId(
                         tripObj.riderId,
                         "updateDriverLocation",
@@ -92,7 +97,7 @@ function updateLocationHandler(socket) {
                         "getDriverDetails",
                         updatedUser.gpsLoc
                       );
-                    } else if (userType === "rider") {
+                    } else if (userType === "2") {
                       SocketStore.emitByUserId(
                         tripObj.driverId,
                         "updateRiderLocation",

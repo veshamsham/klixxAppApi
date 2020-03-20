@@ -54,7 +54,7 @@ function loginadmin(req, res, next) {
         }
 
         user.loginStatus = true;
-        user.gpsLoc = [77.85368273308545, 12.02172902354515];
+        user.gpsLoc = [req.body.lat, req.body.lon];
 
         var token = _jsonwebtoken["default"].sign(user.toJSON(), _env["default"].jwtSecret);
 
@@ -109,7 +109,7 @@ function login(req, res, next) {
         }
 
         user.loginStatus = true;
-        user.gpsLoc = [77.85368273308545, 12.02172902354515];
+        user.gpsLoc = [req.body.lat, req.body.lon];
 
         var token = _jsonwebtoken["default"].sign(user.toJSON(), _env["default"].jwtSecret);
 

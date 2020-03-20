@@ -5,16 +5,17 @@ import SocketStore from "../server/service/socket-store";
 
 function startSocketServer(server) {
   const io = require("socket.io").listen(server); //eslint-disable-line
-
-  console.log("SocketServer started"); //eslint-disable-line
+  console.log(server)
+  console.log("SocketServer started11"); //eslint-disable-line
   io.on("connection", socket => {
+    console.log("hi1")
     // console.log('Client connected to socket', socket.id, '@@', socket.handshake.query.token); //eslint-disable-line
     let authToken = "";
     // check for authentication of the socket
     if (socket.handshake.query && socket.handshake.query.token) {
       authToken = socket.handshake.query.token.replace("JWT ", "");
     }
-
+    console.log(authToken)
     jwt.verify(authToken, config.jwtSecret, (err, userDtls) => {
       // console.log(authToken, '--------');
       if (err) {
@@ -31,6 +32,9 @@ function startSocketServer(server) {
       }
     });
   });
+
+
+  
 }
 
 export default { startSocketServer };

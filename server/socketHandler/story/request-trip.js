@@ -33,6 +33,7 @@ function getConfig() {
 
 function requestTripHandler(socket) {
   socket.on("requestTrip", payload => {
+   
     const quantum = 10;
     const riderID = payload.rider._id;
     nearByDriver(riderID)
@@ -43,18 +44,21 @@ function requestTripHandler(socket) {
             nearByDriversDoc = removeDriverFromList(nearByDriversDoc, i);
           }
         }
+        
         roundRobinAsync(nearByDriversDoc, quantum, payload)
           .then(result => {
             console.log(result, "result round robin");
             if (result === false) {
               payload.tripRequest.tripRequestStatus = "noNearByDriver";
               SendNotification(riderID, "No nearby drivers");
+              socket.emit("requestTrip",{"requestTripData":nearByDriversDoc})
               SocketStore.emitByUserId(
                 payload.rider._id,
                 "tripRequestUpdated",
                 payload.tripRequest
               );
             }
+            
           })
           .catch(e => console.log("error", e));
       })
@@ -399,30 +403,33 @@ function requestTripHandler(socket) {
     }
   }
   function nearByDriver(riderId) {
+    console.log(riderId+ "this is rider id");
     return new Promise((resolve, reject) =>
-      UserSchema.findOneAsync({ _id: riderId, userType: "rider" })
+      UserSchema.findOneAsync({ _id: riderId, userType: "1" })
         .then(userDoc => {
           if (userDoc) {
+            console.log(userDoc+"user info")
             // debug hereeeeee
             return UserSchema.findAsync({
               $and: [
                 {
                   gpsLoc: {
                     $geoWithin: {
-                      $centerSphere: [userDoc.mapCoordinates, config.radius]
+                      $centerSphere: [userDoc.gpsLoc, config.radius]
                     }
                   }
                 },
                 // { gpsLoc: { $geoWithin: { $center: [userDoc.gpsLoc, config.radius] } } },
                 { currTripId: null, currTripState: null },
                 { loginStatus: true },
-                { userType: "driver" },
+                { userType: "2" },
                 { isAvailable: true }
               ]
             })
               .then(driverDoc => {
                 if (driverDoc) {
                   // console.log('hree list', driverDoc);
+                  
                   return resolve(driverDoc);
                 } else {
                   // console.log('no nearByDriver driver found');

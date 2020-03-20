@@ -47,7 +47,7 @@ function loginadmin(req, res, next) {
             return next(err);
           }
           user.loginStatus = true;
-          user.gpsLoc = [77.85368273308545, 12.02172902354515];
+          user.gpsLoc = [req.body.lat, req.body.lon];
           const token = jwt.sign(user.toJSON(), config.jwtSecret);
           UserSchema.findOneAndUpdateAsync(
             { _id: user._id },
@@ -111,7 +111,7 @@ function login(req, res, next) {
             return next(err);
           }
           user.loginStatus = true;
-          user.gpsLoc = [77.85368273308545, 12.02172902354515];
+          user.gpsLoc = [req.body.lat, req.body.lon];
           const token = jwt.sign(user.toJSON(), config.jwtSecret);
           UserSchema.findOneAndUpdateAsync(
             { _id: user._id },

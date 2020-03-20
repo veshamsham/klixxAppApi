@@ -167,6 +167,8 @@ function sendEmail(userId, responseObj, type) {
       }
 
       if (type === "forgot") {
+        console.log(details.username);
+        console.log(userObj.email);
         forgot.render(locals, function (err, results) {
           if (err) {
             return console.error(err);

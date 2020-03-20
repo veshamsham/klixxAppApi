@@ -9,8 +9,9 @@ var _default = {
   jwtSecret: "0a6b944d-d2fb-46fc-a85e-0295c986cd9f",
   // db: 'mongodb://localhost/taxiApp-api-production',
   // db: "mongodb://root:Password!2@ds341557.mlab.com:41557/nitprise-development",
-  // db: "mongodb+srv://nitprise:Rishabh2019@cluster0-sclfx.mongodb.net/klixx?retryWrites=true&w=majority",
-  db:"mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/test?retryWrites=true&w=majority",
+  // db:
+  //   "mongodb+srv://nitprise:Rishabh2019@cluster0-sclfx.mongodb.net/klixx?retryWrites=true&w=majority",
+  db: "mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/klixx?retryWrites=true&w=majority",
   port: 3066,
   passportOptions: {
     session: false

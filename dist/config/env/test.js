@@ -9,7 +9,7 @@ var _default = {
   jwtSecret: '0a6b944d-d2fb-46fc-a85e-0295c986cd9f',
   //db: 'mongodb://localhost/taxiApp-api-test',
   // db: 'mongodb+srv://nitprise:Rishabh2019@cluster0-sclfx.mongodb.net/klixx?retryWrites=true&w=majority',
-  db:"mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/test?retryWrites=true&w=majority",
+  db: "mongodb+srv://rajeev:SzjcRGwIFfdR8uGJ@cluster0-sclfx.mongodb.net/klixx?retryWrites=true&w=majority",
   port: 4123,
   passportOptions: {
     session: false

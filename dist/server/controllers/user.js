@@ -187,7 +187,13 @@ function create(req, res, next) {
           carDetails: req.body.userType === "driver" ? {
             type: "sedan"
           } : {},
-          mapCoordinates: [0, 0],
+          mapCoordinates: [req.body.lat, req.body.lon],
+          // dob:req.body.dob,
+          // bloodGroup:req.body.bloodGroup,
+          // address:req.body.address,
+          // city:req.body.city,
+          // state:req.body.state,
+          // country:req.body.country,
           // isApproved:
           //   req.body.userType, 
           //   === "driver"
@@ -241,6 +247,7 @@ function create(req, res, next) {
 
 
 function update(req, res, next) {
+  console.log("found");
   var user = req.user;
   user.fname = req.body.fname ? req.body.fname : user.fname;
   user.lname = req.body.lname ? req.body.lname : user.lname;
@@ -292,6 +299,7 @@ function upload(req, res, next) {
       form.parse(req, function (err, fields, files) {
         console.log(files, "parse image");
         var imgpath = files.image;
+        console.log(files._writeStream);
 
         _cloudinary["default"].v2.uploader.upload(imgpath.path, function (error, results) {
           if (error) {

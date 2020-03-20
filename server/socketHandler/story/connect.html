@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+
+<html>
+   <head>
+      
+      <script type = "text/javascript">
+           import jwt from "jsonwebtoken";
+          import config from "./env";
+          import sockeHandler from "../server/socketHandler";
+          import SocketStore from "../server/service/socket-store";
+         function WebSocketTest() {
+          var io = require('socket.io').listen(3010);
+
+          console.log('sod.')
+            
+            if ("WebSocket" in window) {
+               alert("WebSocket is supported by your Browser!");
+               
+
+               var socket = io.connect('http://localhost:3010');
+               if (socket.connected){
+                    console.log('socket.io is connected.')
+
+
+          }
+          socket.on('connect', function() {
+               console.log('check 2', socket.connected);
+                      socket.emit('requestTrip', { my: 'data' });
+                    });
+               
+
+         // socket.on('requestTrip', function (data) {
+        //  console.log("check new");
+        //   socket.emit('requestTrip', { my: 'data' });
+        //  });
+         }
+         }
+</script>
+		
+          </head>
+          
+   <body>
+      <div id = "sse">
+         <a href = "javascript:WebSocketTest()">Run WebSocket</a>
+      </div>
+      
+   </body>
+   </html>
