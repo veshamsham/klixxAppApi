@@ -36,6 +36,8 @@ function requestTripHandler(socket) {
    
     const quantum = 10;
     const riderID = payload.rider._id;
+    // const driverId = payload.driver._id;
+
     nearByDriver(riderID)
       .then(nearByDriversDoc => {
         // console.log(nearByDriversDoc, 'nearby user');
@@ -44,6 +46,9 @@ function requestTripHandler(socket) {
             nearByDriversDoc = removeDriverFromList(nearByDriversDoc, i);
           }
         }
+        console.log("roundRobinAsync");
+        console.log(nearByDriversDoc)
+        console.log("roundRobinAsync");
         
         roundRobinAsync(nearByDriversDoc, quantum, payload)
           .then(result => {

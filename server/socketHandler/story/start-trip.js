@@ -43,6 +43,7 @@ const startTripHandler = socket => {
     console.log("start trip called in apiserver------------>");
     const riderID = tripRequestObj.riderId;
     const driverID = tripRequestObj.driverId;
+    console.log("new id")
     tripRequestObj.tripRequestStatus = "completed";
     const tripObj = new TripSchema({
       riderId: tripRequestObj.riderId,
@@ -56,6 +57,7 @@ const startTripHandler = socket => {
     tripObj
       .saveAsync()
       .then(savedTrip => {
+        console.log("I am trying")
         tripRequestObj.tripId = savedTrip._id;
         TripRequest.findOneAndUpdateAsync(
           { _id: tripRequestObj._id },
@@ -104,6 +106,12 @@ const startTripHandler = socket => {
   socket.on("tripUpdate", tripObj => {
     const riderID = tripObj.riderId;
     const driverID = tripObj.driverId;
+    console.log("new test here")
+    console.log(riderID);
+    // console.log("new test here")
+    // socket.emit("tripUpdate",{"requestTripData":driverID})
+
+    console.log("simran here")
     if (
       tripObj.tripStatus === "endTrip" &&
       tripObj.riderRatingByDriver === 0 &&
@@ -128,20 +136,20 @@ const startTripHandler = socket => {
       )
         .then(() => {
           // updated user records
-          getConfig().then(data => {
-            if (data.email.onEndTripRider) {
-              // sendEmail(tripObj.riderId, tripObj, "endTrip");
-            }
-            if (data.email.onEndTripDriver) {
-              // sendEmail(tripObj.driverId, tripObj, "endTrip");
-            }
-            if (data.sms.onEndTripRider) {
-              // sendSms(tripObj.riderId, "You have reached the Destination");
-            }
-            if (data.sms.onEndTripDriver) {
-              // sendSms(tripObj.driverId, "You have drop the Rider ");
-            }
-          });
+          // getConfig().then(data => {
+            // if (data.email.onEndTripRider) {
+            //   // sendEmail(tripObj.riderId, tripObj, "endTrip");
+            // }
+            // if (data.email.onEndTripDriver) {
+            //   // sendEmail(tripObj.driverId, tripObj, "endTrip");
+            // }
+            // if (data.sms.onEndTripRider) {
+            //   // sendSms(tripObj.riderId, "You have reached the Destination");
+            // }
+            // if (data.sms.onEndTripDriver) {
+            //   // sendSms(tripObj.driverId, "You have drop the Rider ");
+            // }
+          // });
         })
         .error(e => {
           SocketStore.emitByUserId(tripObj.riderId, "socketError", {
@@ -179,7 +187,7 @@ const startTripHandler = socket => {
             SocketStore.emitByUserId(riderID, "socketError", e);
             SocketStore.emitByUserId(driverID, "socketError", e);
           });
-      });
+      });emitByUserId
     } else {
       TripSchema.findOneAndUpdateAsync(
         { _id: tripObj._id },
@@ -201,6 +209,7 @@ const startTripHandler = socket => {
 };
 
 function updateUserRating(tripObj) {
+  console.log("i am here")
   if (tripObj.riderRatingByDriver !== 0) {
     TripSchema.findOneAndUpdateAsync(
       { _id: tripObj._id },

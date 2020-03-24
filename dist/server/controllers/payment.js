@@ -299,6 +299,12 @@ function updateCard(req, res) {
 }
 
 function cardPayment(tripObj) {
+
+  console.log(tripObj)
+  console.log("between");
+  console.log(_user["default"].findOneAsync({
+    email: tripObj.rider.email
+  }))
   return new Promise(function (resolve, reject) {
     getStripeKey().then(function (key) {
       var stripe = (0, _stripe["default"])(key);
